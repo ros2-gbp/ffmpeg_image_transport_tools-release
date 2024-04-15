@@ -2,7 +2,7 @@
 Changelog for package ffmpeg_image_transport_tools
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1.1.0 (2024-04-12)
+1.2.0 (2024-04-15)
 ------------------
-* initial release
+* initial release of ROS2 package
 * Contributors: Bernd Pfrommer
