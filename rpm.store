@@ -1,1 +1,1 @@
-{"base": "deb6327", "parent": "rpm/rolling/ffmpeg_image_transport_tools", "previous": "c9ccedb", "trim": "", "trimbase": ""}
+{"base": "48943b1", "parent": "rpm/rolling/ffmpeg_image_transport_tools", "previous": "d20553c", "trim": "", "trimbase": ""}
