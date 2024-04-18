@@ -1,8 +1,0 @@
-ros-rolling-ffmpeg-image-transport-tools (1.0.0-2noble) noble; urgency=high
-
-  * initial release of ROS2 package
-  * Contributors: Bernd Pfrommer
-
- -- Bernd Pfrommer <bernd.pfrommer@gmail.com>  Mon, 15 Apr 2024 04:00:00 -0000
-
-
