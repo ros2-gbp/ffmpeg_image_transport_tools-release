@@ -1,1 +1,1 @@
-{"base": "1fd0e86", "parent": "debian/rolling/ffmpeg_image_transport_tools", "previous": "25b1f47", "trim": "", "trimbase": ""}
+{"base": "f2fe98cff83e", "parent": "debian/kilted/ffmpeg_image_transport_tools", "previous": "a3763446b39d", "trim": "", "trimbase": ""}
