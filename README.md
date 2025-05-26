@@ -1,3 +1,26 @@
+## ffmpeg_image_transport_tools (kilted) - 2.1.2-1
+
+The packages in the `ffmpeg_image_transport_tools` repository were released into the `kilted` distro by running `/usr/bin/bloom-release --rosdistro kilted --new-track ffmpeg_image_transport_tools` on `Mon, 26 May 2025 19:58:02 -0000`
+
+The `ffmpeg_image_transport_tools` package was released.
+
+Version of package(s) in repository `ffmpeg_image_transport_tools`:
+
+- upstream repository: https://github.com/ros-misc-utilities/ffmpeg_image_transport_tools.git
+- release repository: https://github.com/ros2-gbp/ffmpeg_image_transport_tools-release.git
+- rosdistro version: `2.1.1-2`
+- old version: `2.1.1-2`
+- new version: `2.1.2-1`
+
+Versions of tools used:
+
+- bloom version: `0.12.0`
+- catkin_pkg version: `1.0.0`
+- rosdep version: `0.25.1`
+- rosdistro version: `1.0.1`
+- vcstools version: `0.1.42`
+
+
 ## ffmpeg_image_transport_tools (jazzy) - 2.1.2-1
 
 The packages in the `ffmpeg_image_transport_tools` repository were released into the `jazzy` distro by running `/usr/bin/bloom-release --rosdistro jazzy --edit-track ffmpeg_image_transport_tools` on `Mon, 26 May 2025 19:55:02 -0000`
