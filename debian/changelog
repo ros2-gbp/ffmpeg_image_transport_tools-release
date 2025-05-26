@@ -1,0 +1,37 @@
+ros-jazzy-ffmpeg-image-transport-tools (2.1.2-1noble) noble; urgency=high
+
+  * avoid ament_target_dependencies
+  * Contributors: Bernd Pfrommer
+
+ -- Bernd Pfrommer <bernd.pfrommer@gmail.com>  Mon, 26 May 2025 04:00:00 -0000
+
+ros-jazzy-ffmpeg-image-transport-tools (2.1.1-1noble) noble; urgency=high
+
+  * use encoder/decoder instead of transport
+  * fixed README status badges
+  * Contributors: Bernd Pfrommer
+
+ -- Bernd Pfrommer <bernd.pfrommer@gmail.com>  Mon, 17 Mar 2025 04:00:00 -0000
+
+ros-jazzy-ffmpeg-image-transport-tools (2.1.0-1noble) noble; urgency=high
+
+  * fixed README status badges
+  * Contributors: Bernd Pfrommer
+
+ -- Bernd Pfrommer <bernd.pfrommer@gmail.com>  Sat, 15 Mar 2025 04:00:00 -0000
+
+ros-jazzy-ffmpeg-image-transport-tools (2.0.0-1noble) noble; urgency=high
+
+  * fix build issues on rolling
+  * Contributors: Bernd Pfrommer
+
+ -- Bernd Pfrommer <bernd.pfrommer@gmail.com>  Sat, 15 Mar 2025 04:00:00 -0000
+
+ros-jazzy-ffmpeg-image-transport-tools (1.2.0-1noble) noble; urgency=high
+
+  * initial release of ROS2 package
+  * Contributors: Bernd Pfrommer
+
+ -- Bernd Pfrommer <bernd.pfrommer@gmail.com>  Mon, 15 Apr 2024 04:00:00 -0000
+
+
