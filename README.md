@@ -1,3 +1,26 @@
+## ffmpeg_image_transport_tools (humble) - 3.0.1-1
+
+The packages in the `ffmpeg_image_transport_tools` repository were released into the `humble` distro by running `/usr/bin/bloom-release --rosdistro humble ffmpeg_image_transport_tools` on `Fri, 22 Aug 2025 13:30:14 -0000`
+
+The `ffmpeg_image_transport_tools` package was released.
+
+Version of package(s) in repository `ffmpeg_image_transport_tools`:
+
+- upstream repository: https://github.com/ros-misc-utilities/ffmpeg_image_transport_tools.git
+- release repository: https://github.com/ros2-gbp/ffmpeg_image_transport_tools-release.git
+- rosdistro version: `2.1.2-1`
+- old version: `2.1.2-1`
+- new version: `3.0.1-1`
+
+Versions of tools used:
+
+- bloom version: `0.13.0`
+- catkin_pkg version: `1.0.0`
+- rosdep version: `0.26.0`
+- rosdistro version: `1.0.1`
+- vcstools version: `0.1.42`
+
+
 ## ffmpeg_image_transport_tools (rolling) - 3.0.0-2
 
 The packages in the `ffmpeg_image_transport_tools` repository were released into the `rolling` distro by running `/usr/bin/bloom-release --rosdistro rolling ffmpeg_image_transport_tools` on `Fri, 22 Aug 2025 12:31:44 -0000`
