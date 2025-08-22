@@ -15,6 +15,7 @@
 
 #include <unistd.h>
 
+#include <ffmpeg_encoder_decoder/utils.hpp>
 #include <ffmpeg_image_transport_msgs/msg/ffmpeg_packet.hpp>
 #include <ffmpeg_image_transport_tools/bag_processor.hpp>
 #include <ffmpeg_image_transport_tools/message_processor.hpp>
@@ -27,12 +28,16 @@
 void usage()
 {
   std::cout << "usage:" << std::endl;
-  std::cout << "bag_to_file -b input_bag -t topic -r rate [-o out_file] "
-            << "[-T timestamp_file] [-s start_time] [-e end_time] " << std::endl;
+  std::cout
+    << "bag_to_file -i input_bag -t topic -r rate [-o out_file] "
+    << "[-T timestamp_file] [-s start_time (sec since epoch)] [-e end_time (sec since epoch)] "
+    << std::endl;
 }
 
 using ffmpeg_image_transport_msgs::msg::FFMPEGPacket;
 using bag_time_t = rcutils_time_point_value_t;
+
+rclcpp::Logger logger = rclcpp::get_logger("bag_to_file");
 
 static void convertToMP4(const std::string & raw, const std::string & mp4, double rate)
 {
@@ -40,32 +45,43 @@ static void convertToMP4(const std::string & raw, const std::string & mp4, doubl
   ss << "ffmpeg -y -r " << rate << " -i " << raw << " -c:v copy " << mp4;
   int rc = std::system(ss.str().c_str());
   if (rc == -1) {
-    std::cerr << " error command: " << ss.str() << std::endl;
+    RCLCPP_ERROR_STREAM(logger, " error command: " << ss.str());
   }
   rc = std::system(("rm " + raw).c_str());
   if (rc == -1) {
-    std::cerr << " error removing file: " << raw << std::endl;
+    RCLCPP_ERROR_STREAM(logger, " error removing file: " << raw);
   }
 }
 
 class FileWriter : public ffmpeg_image_transport_tools::MessageProcessor<FFMPEGPacket>
 {
 public:
-  FileWriter(const std::string & raw_file, const std::string & ts_file)
+  FileWriter(const std::string & raw_file, const std::string & ts_file) : base_name_(raw_file)
   {
-    std::cout << "writing to raw file: " << raw_file << std::endl;
-    raw_file_ = std::ofstream(raw_file, std::ios::out | std::ios::binary);
     ts_file_.open(ts_file);
   }
 
-  void process(uint64_t t, const FFMPEGPacket::ConstSharedPtr & m) final
+  void process(
+    rcutils_time_point_value_t t_recv, rcutils_time_point_value_t t_send, const std::string &,
+    const FFMPEGPacket::ConstSharedPtr & m) final
   {
+    (void)t_send;
     const auto t_header = Time(m->header.stamp).nanoseconds();
+    if (!raw_file_.is_open()) {
+      const auto codec = ffmpeg_encoder_decoder::utils::split_encoding(m->encoding)[0];
+      raw_file_name_ = base_name_ + "." + codec;
+      RCLCPP_INFO_STREAM(logger, "writing to raw file: " << raw_file_name_);
+      raw_file_ = std::ofstream(raw_file_name_, std::ios::out | std::ios::binary);
+    }
     raw_file_.write(reinterpret_cast<const char *>(m->data.data()), m->data.size());
-    ts_file_ << packet_number_++ << " " << m->pts << " " << t_header << " " << t << std::endl;
+    ts_file_ << packet_number_++ << " " << m->pts << " " << t_header << " "
+             << rclcpp::Time(t_recv).nanoseconds() << std::endl;
   }
+  const auto & getRawFileName() const { return raw_file_name_; }
 
 private:
+  std::string base_name_{"invalid"};
+  std::string raw_file_name_{"invalid"};
   std::ofstream raw_file_;
   std::ofstream ts_file_;
   size_t packet_number_{0};
@@ -75,7 +91,7 @@ int main(int argc, char ** argv)
 {
   int opt;
   std::string bag;
-  std::string out_file = "video.mp4";
+  std::string out_file = "video";
   std::string topic;
   std::string time_stamp_file = "timestamps.txt";
 
@@ -83,9 +99,9 @@ int main(int argc, char ** argv)
   bag_time_t end_time = std::numeric_limits<bag_time_t>::max();
   double rate(-1);
 
-  while ((opt = getopt(argc, argv, "b:e:o:r:s:t:h")) != -1) {
+  while ((opt = getopt(argc, argv, "i:e:o:r:s:t:h")) != -1) {
     switch (opt) {
-      case 'b':
+      case 'i':
         bag = optarg;
         break;
       case 'e':
@@ -98,7 +114,7 @@ int main(int argc, char ** argv)
         }
         break;
       case 'o':
-        out_file = atof(optarg);
+        out_file = optarg;
         break;
       case 'r':
         rate = atof(optarg);
@@ -141,12 +157,11 @@ int main(int argc, char ** argv)
     usage();
     return (-1);
   }
-
-  const std::string raw_file = out_file + ".h264";
   const std::string topic_type = "ffmpeg_image_transport_msgs/msg/FFMPEGPacket";
+  std::vector<std::string> topics{topic};
   ffmpeg_image_transport_tools::BagProcessor<FFMPEGPacket> bproc(
-    bag, topic, topic_type, start_time, end_time);
-  FileWriter fw(raw_file, time_stamp_file);
+    logger, bag, topics, topic_type, start_time, end_time);
+  FileWriter fw(out_file, time_stamp_file);
   bproc.process(&fw);
-  convertToMP4(raw_file, out_file, rate);
+  convertToMP4(fw.getRawFileName(), out_file + ".mp4", rate);
 }
