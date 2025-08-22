@@ -1,0 +1,12 @@
+Source: ros-kilted-ffmpeg-image-transport-tools
+Section: misc
+Priority: optional
+Maintainer: Bernd Pfrommer <bernd.pfrommer@gmail.com>
+Build-Depends: debhelper (>= 9.0.0), libopencv-imgproc-dev, ros-kilted-ament-cmake, ros-kilted-ament-cmake-black <!nocheck>, ros-kilted-ament-cmake-clang-format <!nocheck>, ros-kilted-ament-cmake-gtest <!nocheck>, ros-kilted-ament-cmake-ros, ros-kilted-ament-lint-auto <!nocheck>, ros-kilted-ament-lint-common <!nocheck>, ros-kilted-cv-bridge, ros-kilted-ffmpeg-encoder-decoder, ros-kilted-ffmpeg-image-transport-msgs, ros-kilted-rclcpp, ros-kilted-rcutils, ros-kilted-ros-environment, ros-kilted-rosbag2-cpp, ros-kilted-rosbag2-storage, ros-kilted-sensor-msgs, ros-kilted-ros-workspace
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-kilted-ffmpeg-image-transport-tools
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libopencv-imgproc-dev, ros-kilted-cv-bridge, ros-kilted-ffmpeg-encoder-decoder, ros-kilted-ffmpeg-image-transport-msgs, ros-kilted-rclcpp, ros-kilted-rcutils, ros-kilted-rosbag2-cpp, ros-kilted-rosbag2-storage, ros-kilted-sensor-msgs, ros-kilted-ros-workspace
+Description: tools for processing ffmpeg_image_transport_msgs
