@@ -1,0 +1,12 @@
+Source: ros-lyrical-ffmpeg-image-transport-tools
+Section: misc
+Priority: optional
+Maintainer: Bernd Pfrommer <bernd.pfrommer@gmail.com>
+Build-Depends: debhelper (>= 9.0.0), libopencv-imgproc-dev, ros-lyrical-ament-cmake, ros-lyrical-ament-cmake-black <!nocheck>, ros-lyrical-ament-cmake-clang-format <!nocheck>, ros-lyrical-ament-cmake-gtest <!nocheck>, ros-lyrical-ament-cmake-ros, ros-lyrical-ament-lint-auto <!nocheck>, ros-lyrical-ament-lint-common <!nocheck>, ros-lyrical-cv-bridge, ros-lyrical-ffmpeg-encoder-decoder, ros-lyrical-ffmpeg-image-transport-msgs, ros-lyrical-rclcpp, ros-lyrical-rcutils, ros-lyrical-ros-environment, ros-lyrical-rosbag2-cpp, ros-lyrical-rosbag2-storage, ros-lyrical-sensor-msgs, ros-lyrical-ros-workspace
+Homepage: https://index.ros.org/p/ffmpeg_image_transport_tools/#lyrical
+Standards-Version: 3.9.2
+
+Package: ros-lyrical-ffmpeg-image-transport-tools
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libopencv-imgproc-dev, ros-lyrical-cv-bridge, ros-lyrical-ffmpeg-encoder-decoder, ros-lyrical-ffmpeg-image-transport-msgs, ros-lyrical-rclcpp, ros-lyrical-rcutils, ros-lyrical-rosbag2-cpp, ros-lyrical-rosbag2-storage, ros-lyrical-sensor-msgs, ros-lyrical-ros-workspace
+Description: tools for processing ffmpeg_image_transport_msgs
